@@ -1,0 +1,96 @@
+.weather-border {
+  border: 1px transparent;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border-radius: 10px;
+  max-width: 900px;
+  text-align: center;
+  background-color: white;
+}
+
+body {
+  background-color: #e4f1fe;
+  color: #606470;
+}
+
+.container {
+  font-family: "Noto Sans", sans-serif;
+}
+
+h1 {
+  margin-top: 10px;
+  color: black;
+}
+
+h2 {
+  color: black;
+}
+
+li {
+  list-style: none;
+}
+
+.elements {
+  text-align: left;
+}
+
+ul {
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.temperature {
+  font-size: 90px;
+  font-weight: 400px;
+  line-height: 1;
+  color: black;
+}
+.sun-icon {
+  font-size: 70px;
+  color: #f78607;
+}
+
+p {
+  font-size: 30px;
+  margin: 0;
+}
+
+.card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: transparent;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-text {
+  font-size: 20px;
+  padding-top: 5px;
+}
+
+.card-title {
+  margin: 0;
+}
+
+.small-icon {
+  font-size: 20px;
+  color: #f78607;
+  padding-bottom: px;
+}
+
+h3 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 40px;
+}
+
+h4 {
+  padding-top: 10px;
+}
+
+footer {
+  text-align: center;
+}
