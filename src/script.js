@@ -10,6 +10,25 @@ function formatDate(date) {
     minutes = `0${minutes}`;
   }
 
+  let date1 = date.getDate();
+
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  let month = months[date.getMonth()];
+
   let days = [
     "Sunday",
     "Monday",
@@ -22,7 +41,7 @@ function formatDate(date) {
 
   let day = days[date.getDay()];
 
-  return `${day} ${hours}:${minutes}`;
+  return `${day} ${hours}:${minutes}, ${date1} ${month}`;
 }
 
 // Replace temperature and city with input from search bar function
