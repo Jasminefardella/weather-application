@@ -55,6 +55,12 @@ ul {
   color: #f78607;
 }
 
+.units {
+  position: relative;
+  top: -52px;
+  font-size: 18px;
+}
+
 p {
   font-size: 30px;
   margin: 0;
