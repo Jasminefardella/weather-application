@@ -10,11 +10,10 @@
 }
 
 body {
-  background: linear-gradient(
-    89.9deg,
-    rgb(208, 246, 255) 0.1%,
-    rgb(255, 237, 237) 47.9%,
-    rgb(255, 255, 231) 100.2%
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(255, 229, 168) 0%,
+    rgb(251, 174, 222) 100.7%
   );
   color: #606470;
 }
