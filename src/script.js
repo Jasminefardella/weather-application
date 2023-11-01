@@ -46,10 +46,13 @@ function formatDate(date) {
 
 // Replace temperature and city with input from search bar function
 function displayWeatherCondition(response) {
+  // Replace city with input
   document.querySelector("#city").innerHTML = response.data.name;
+  // Replace temperature with input city temperature
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  // Replace weather conditions with live data
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
