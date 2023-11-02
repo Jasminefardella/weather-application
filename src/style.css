@@ -1,3 +1,16 @@
+body {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(255, 229, 168) 0%,
+    rgb(251, 174, 222) 100.7%
+  );
+  color: #5a5c68;
+}
+
+a {
+  color: rgb(225, 121, 185);
+}
+
 .weather-border {
   border: 1px transparent;
   padding: 20px;
@@ -8,15 +21,6 @@
   text-align: center;
   background-color: white;
   box-shadow: rgba(65, 50, 100, 0.08) 0px 30px 50px 0px;
-}
-
-body {
-  background: radial-gradient(
-    circle at 10% 20%,
-    rgb(255, 229, 168) 0%,
-    rgb(251, 174, 222) 100.7%
-  );
-  color: #606470;
 }
 
 .container {
@@ -37,6 +41,10 @@ li {
   text-transform: capitalize;
 }
 
+strong {
+  color: rgb(225, 121, 185);
+}
+
 .elements {
   text-align: left;
 }
@@ -47,19 +55,27 @@ ul {
 }
 
 .temperature {
-  font-size: 90px;
+  font-size: 105px;
   font-weight: 400px;
   line-height: 1;
   color: black;
 }
+
 .sun-icon {
   font-size: 70px;
   color: #f78607;
+  padding: 10px;
+}
+
+.elements {
+  position: relative;
+  top: 11px;
+  right: -50px;
 }
 
 .units {
   position: relative;
-  top: -52px;
+  top: -62px;
   font-size: 18px;
 }
 
