@@ -45,12 +45,8 @@ strong {
   color: rgb(225, 121, 185);
 }
 
-.elements {
-  text-align: left;
-}
-
 ul {
-  padding: 15px;
+  padding: 5px;
   margin-top: 20px;
 }
 
@@ -62,15 +58,20 @@ ul {
 }
 
 #icon {
-  width: 100px;
-  height: 100px;
-  margin-top: 1px;
+  position: relative;
+  top: -30px;
+}
+
+#description {
+  position: relative;
+  top: -25px;
 }
 
 .elements {
   position: relative;
   top: 11px;
   right: -50px;
+  text-align: left;
 }
 
 .units {
@@ -85,8 +86,7 @@ p {
 }
 
 .card {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: transparent;
 }
 
@@ -106,7 +106,6 @@ p {
 .small-icon {
   font-size: 20px;
   color: #f78607;
-  padding-bottom: px;
 }
 
 h3 {
