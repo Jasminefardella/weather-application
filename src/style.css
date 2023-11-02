@@ -57,14 +57,14 @@ ul {
 .temperature {
   font-size: 105px;
   font-weight: 400px;
-  line-height: 1;
+  line-height: 88px;
   color: black;
 }
 
-.sun-icon {
-  font-size: 70px;
-  color: #f78607;
-  padding: 10px;
+#icon {
+  width: 100px;
+  height: 100px;
+  margin-top: 1px;
 }
 
 .elements {
