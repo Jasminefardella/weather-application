@@ -100,6 +100,28 @@ function changeTempCelsius(event) {
   link.innerHTML = `17`;
 }
 
+// Weather forcast function
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+
+  forecast.innerHTML = `        
+              <div class="weather-forecast-day">Sun</div>
+              <img
+                src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt=""
+                width="42"
+                class="weather-forecast-icon"
+              />
+              <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperature-max"
+                  ><strong>18°</strong>
+                </span>
+                <span class="weather-forecast-temperature-min">12°</span>
+              </div>
+            </div>
+      `;
+}
+
 // Call time function
 let time = document.querySelector("#current-time");
 let currentTime = new Date();
@@ -121,3 +143,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeTempCelsius);
 
 searchCity("New York");
+displayForecast();
