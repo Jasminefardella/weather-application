@@ -100,26 +100,33 @@ function changeTempCelsius(event) {
   link.innerHTML = `17`;
 }
 
-// Weather forcast function
+// Weather forcast function and loop
 function displayForecast() {
-  let forecast = document.querySelector("#forecast");
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHTML = "";
 
-  forecast.innerHTML = `        
-              <div class="weather-forecast-day">Sun</div>
-              <img
-                src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt=""
-                width="42"
-                class="weather-forecast-icon"
-              />
-              <div class="weather-forecast-temperatures">
-                <span class="weather-forecast-temperature-max"
-                  ><strong>18°</strong>
-                </span>
-                <span class="weather-forecast-temperature-min">12°</span>
-              </div>
-            </div>
-      `;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="weather-forecast-day">${day}</div>
+  <img
+  src="https://openweathermap.org/img/wn/10d@2x.png"
+  alt=""
+  width="42"
+  class="weather-forecast-icon"
+  />
+  <div class="weather-forecast-temperatures">
+  <div class="weather-forecast-temperature-max"
+  ><strong>18°</strong>
+  </div>
+  <div class="weather-forecast-temperature-min">12°</div>
+  </div>
+  </div>
+  `;
+  });
+
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHTML;
 }
 
 // Call time function
@@ -143,4 +150,6 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeTempCelsius);
 
 searchCity("New York");
+
+// Call forecast function
 displayForecast();
