@@ -60,6 +60,8 @@ function displayWeatherCondition(response) {
   document.querySelector(
     "#icon"
   ).innerHTML = `<img src="https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" />`;
+
+  getForecast(response.data.main.temp);
 }
 
 function searchCity(city) {
@@ -68,10 +70,11 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
-function handleSubmit(event) {
+function handleSearchSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
+  let searchInput = document.querySelector("#city-input").value;
+
+  searchCity(searchInput);
 }
 
 function searchLocation(position) {
@@ -100,8 +103,24 @@ function changeTempCelsius(event) {
   link.innerHTML = `17`;
 }
 
-// Weather forcast function and loop
-function displayForecast() {
+// Forecast days function
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+// Forecast API
+function getForecast(city) {
+  let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&`;
+
+  axios(apiUrl).then(displayForecast);
+}
+
+// Weather forecast function and loop
+function displayForecast(response) {
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHTML = "";
 
@@ -138,7 +157,7 @@ time.innerHTML = formatDate(currentTime);
 
 // Call search city and weather function
 let searchForm = document.querySelector("#search-bar");
-searchForm.addEventListener("submit", handleSubmit);
+searchForm.addEventListener("submit", handleSearchSubmit);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
@@ -151,7 +170,7 @@ fahrenheitLink.addEventListener("click", changeTempFahrenheit);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeTempCelsius);
 
-searchCity("New York");
+searchCity("Paris");
 
 // Call forecast function
 displayForecast();
