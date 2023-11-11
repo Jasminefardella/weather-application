@@ -109,7 +109,7 @@ function getForecast(coordinates) {
 function displayForecast(response) {
   let forecastHTML = `<div class="row"`;
   response.data.daily.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 5) {
       forecastHTML =
         forecastHTML +
         ` 
