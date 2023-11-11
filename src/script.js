@@ -61,7 +61,7 @@ function displayWeatherCondition(response) {
     "#icon"
   ).innerHTML = `<img src="https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" />`;
 
-  getForecast(response.data.main.temp);
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -89,20 +89,6 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-// Convert celsius to fahrenheit function
-function changeTempFahrenheit(event) {
-  event.preventDefault();
-  let link = document.querySelector("#temperature");
-  link.innerHTML = `66`;
-}
-
-// Convert fahrenheit to celsius function
-function changeTempCelsius(event) {
-  event.preventDefault();
-  let link = document.querySelector("#temperature");
-  link.innerHTML = `17`;
-}
-
 // Forecast days function
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -112,43 +98,70 @@ function formatDay(timestamp) {
 }
 
 // Forecast API
-function getForecast(city) {
+function getForecast(coordinates) {
   let apiKey = "85bbd3d16a2dfe0ecf253c7ae1e8fe03";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
 
   axios(apiUrl).then(displayForecast);
 }
 
 // Weather forecast function and loop
 function displayForecast(response) {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
-  let forecastHTML = "";
-
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` 
-       <div class="col-2">
-      <div class="weather-forecast-date">${day}</div>
-  <img
-  src="https://openweathermap.org/img/wn/10d@2x.png"
-  alt=""
-  width="42"
-  class="weather-forecast-icon"
-  />
-  <div class="weather-forecast-temperatures">
-  <span class="weather-forecast-temperature-max"
-  ><strong>18°</strong>
-  </span>
-  <span class="weather-forecast-temperature-min">12°</span>
-  </div>
-  </div>
-  `;
+  let forecastHTML = `<div class="row"`;
+  response.data.daily.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        ` 
+      <div class="col-2">
+      <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+      <img
+      src="https://openweathermap.org/img/wn/${
+        forecastDay.weather[0].icon
+      }@2x.png"
+      alt=""
+      width="42"
+      class="weather-forecast-icon"
+      />
+      <div class="weather-forecast-temperatures">
+      <span class="weather-forecast-temperature-max"
+      ><strong>${Math.round(forecastDay.temp.max)}°</strong>
+      </span>
+      <span class="weather-forecast-temperature-min">${Math.round(
+        forecastDay.temp.min
+      )}°</span>
+        </div>
+        </div>
+        `;
+    }
   });
 
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHTML;
 }
+
+// Convert celsius to fahrenheit function
+function changeTempFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let fahrTemp = (temperatureElement * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrTemp);
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+// Convert fahrenheit to celsius function
+function changeTempCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+let celsiusTemperature = null;
 
 // Call time function
 let time = document.querySelector("#current-time");
@@ -170,7 +183,4 @@ fahrenheitLink.addEventListener("click", changeTempFahrenheit);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeTempCelsius);
 
-searchCity("Paris");
-
-// Call forecast function
-displayForecast();
+searchCity("New York");
