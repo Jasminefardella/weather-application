@@ -80,6 +80,16 @@ ul {
   font-size: 18px;
 }
 
+.units .active {
+  font-size: 26px;
+  font-weight: bolder;
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}
+
 .weather-forecast {
   margin-top: 30px;
   display: flex;

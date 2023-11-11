@@ -49,9 +49,12 @@ function displayWeatherCondition(response) {
   // Replace city with input
   document.querySelector("#city").innerHTML = response.data.name;
   // Replace temperature with input city temperature
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  let temperatureElement = document.querySelector("#temperature");
+
+  celsiusTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
   // Replace weather conditions with live data
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
@@ -107,7 +110,7 @@ function getForecast(coordinates) {
 
 // Weather forecast function and loop
 function displayForecast(response) {
-  let forecastHTML = `<div class="row"`;
+  let forecastHTML = `<div class="row>"`;
   response.data.daily.forEach(function (forecastDay, index) {
     if (index < 5) {
       forecastHTML =
@@ -144,7 +147,7 @@ function displayForecast(response) {
 function changeTempFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  let fahrTemp = (temperatureElement * 9) / 5 + 32;
+  let fahrTemp = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrTemp);
 
   celsiusLink.classList.remove("active");
@@ -160,8 +163,6 @@ function changeTempCelsius(event) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 }
-
-let celsiusTemperature = null;
 
 // Call time function
 let time = document.querySelector("#current-time");
