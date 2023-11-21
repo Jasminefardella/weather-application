@@ -9,6 +9,7 @@ body {
 
 a {
   color: rgb(225, 121, 185);
+  text-decoration: none;
 }
 
 .weather-border {
